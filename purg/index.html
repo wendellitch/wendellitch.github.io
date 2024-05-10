@@ -9,52 +9,7 @@
     <script src="TemplateData/UnityProgress.js"></script>  
     <script src="Build/UnityLoader.js"></script>
     <script>
-      function unityShowBanner(msg, type) {
-        // Function definition for showing banners
-      }
-
-      var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/Seven Days in Purgatory.loader.js";
-      var config = {
-        dataUrl: buildUrl + "/webgl.data",
-        frameworkUrl: buildUrl + "/build.framework.js",
-        codeUrl: buildUrl + "/build.wasm",
-        streamingAssetsUrl: "StreamingAssets",
-        companyName: "YourCompanyName",
-        productName: "The Gateway",
-        productVersion: "0.1",
-        showBanner: unityShowBanner,
-      };
-
-      var container = document.querySelector("#gameContainer");
-      var fullscreenButton = document.querySelector(".fullscreen");
-
-      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-        // Mobile device style: fill the whole browser client area with the game canvas:
-        document.documentElement.style.overflow = 'hidden';  // Prevent scrolling
-        document.body.style.margin = '0'; // Reset margin
-        document.body.style.overflow = 'hidden'; // Hide scrollbars
-
-        container.style.width = "100%";
-        container.style.height = "100%";
-      } else {
-        // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
-        container.style.width = "1280px";
-        container.style.height = "720px";
-      }
-
-      var loadingBar = UnityProgress(gameInstance, function(progress) {
-        // Progress bar handling
-      });
-
-      var script = document.createElement("script");
-      script.src = loaderUrl;
-      script.onload = () => {
-        UnityLoader.instantiate("gameContainer", buildUrl + "/Seven Days in Purgatory.json", {onProgress: UnityProgress});
-      };
-
-      document.body.appendChild(script);
-
+      var gameInstance = UnityLoader.instantiate("gameContainer", "Build/Seven Days in Purgatory.json", {onProgress: UnityProgress});
     </script>
   </head>
   <body>
